@@ -1,14 +1,5 @@
-import express, { Request, Response } from 'express';
+import { createServer } from "express-zod-api";
+import {config} from "./config";
+import {routing} from "./routes";
 
-const app = express();
-const port = process.env.PORT || 3000;
-
-
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello, TypeScript Express!');
-});
-
-
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-});
+createServer(config, routing);

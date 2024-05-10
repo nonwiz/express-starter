@@ -109,7 +109,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/http-errors@npm:*":
+"@types/http-errors@npm:*, @types/http-errors@npm:^2.0.4":
   version: 2.0.4
   resolution: "@types/http-errors@npm:2.0.4"
   checksum: 10c0/494670a57ad4062fee6c575047ad5782506dd35a6b9ed3894cea65830a94367bd84ba302eb3dde331871f6d70ca287bfedb1b2cf658e6132cd2cbd427ab56836
@@ -190,6 +190,13 @@ __metadata:
   bin:
     acorn: bin/acorn
   checksum: 10c0/3ff155f8812e4a746fee8ecff1f227d527c4c45655bb1fad6347c3cb58e46190598217551b1500f18542d2bbe5c87120cb6927f5a074a59166fbdd9468f0a299
+  languageName: node
+  linkType: hard
+
+"ansis@npm:^3.1.0":
+  version: 3.2.0
+  resolution: "ansis@npm:3.2.0"
+  checksum: 10c0/b61c16554e707f30685ab153ffafc02b59bb9e86567a04b2e2ad521ade771c9ae3cd67f3e486a1cd2e3c89ad898653266bc38d76ea7af4ac67762baa3c87befa
   languageName: node
   linkType: hard
 
@@ -374,12 +381,66 @@ __metadata:
   resolution: "express-plate@workspace:."
   dependencies:
     "@types/express": "npm:^4.17.21"
+    "@types/http-errors": "npm:^2.0.4"
     "@types/node": "npm:^20.12.11"
     express: "npm:^4.19.2"
+    express-zod-api: "npm:^18.5.2"
+    http-errors: "npm:^2.0.0"
     ts-node: "npm:^10.9.2"
     typescript: "npm:^5.4.5"
+    zod: "npm:^3.23.8"
   languageName: unknown
   linkType: soft
+
+"express-zod-api@npm:^18.5.2":
+  version: 18.5.2
+  resolution: "express-zod-api@npm:18.5.2"
+  dependencies:
+    ansis: "npm:^3.1.0"
+    openapi3-ts: "npm:^4.2.1"
+    ramda: "npm:^0.30.0"
+  peerDependencies:
+    "@types/compression": ^1.7.5
+    "@types/express": ^4.17.13
+    "@types/express-fileupload": ^1.4.4
+    "@types/http-errors": ^2.0.2
+    "@types/jest": "*"
+    "@types/node": "*"
+    compression: ^1.7.4
+    express: ^4.18.2
+    express-fileupload: ^1.4.3
+    http-errors: ^2.0.0
+    jest: ">=28 <30"
+    prettier: ^3.1.0
+    typescript: ^5.1.3
+    vitest: ^1.0.4
+    zod: ^3.22.3
+  peerDependenciesMeta:
+    "@types/compression":
+      optional: true
+    "@types/express":
+      optional: true
+    "@types/express-fileupload":
+      optional: true
+    "@types/http-errors":
+      optional: true
+    "@types/jest":
+      optional: true
+    "@types/node":
+      optional: true
+    compression:
+      optional: true
+    express-fileupload:
+      optional: true
+    jest:
+      optional: true
+    prettier:
+      optional: true
+    vitest:
+      optional: true
+  checksum: 10c0/7a8aa40e495126c25728c95c19f1e666a341b93fd8a2d8f4accbdc86d324fa77902be80e3395b497072fc8276cfb718ccb203561f9c87ab3410de93b952ce928
+  languageName: node
+  linkType: hard
 
 "express@npm:^4.19.2":
   version: 4.19.2
@@ -510,7 +571,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-errors@npm:2.0.0":
+"http-errors@npm:2.0.0, http-errors@npm:^2.0.0":
   version: 2.0.0
   resolution: "http-errors@npm:2.0.0"
   dependencies:
@@ -636,6 +697,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"openapi3-ts@npm:^4.2.1":
+  version: 4.3.1
+  resolution: "openapi3-ts@npm:4.3.1"
+  dependencies:
+    yaml: "npm:^2.4.1"
+  checksum: 10c0/6d6860ad357eb694db044f09cfc68204b8df46ad8a8b33d584d110ee2a7acd9c92f102a25851cf528f5636352daddf1f82cb7b2fae4ad4c6641e0df02c566b45
+  languageName: node
+  linkType: hard
+
 "parseurl@npm:~1.3.3":
   version: 1.3.3
   resolution: "parseurl@npm:1.3.3"
@@ -666,6 +736,13 @@ __metadata:
   dependencies:
     side-channel: "npm:^1.0.4"
   checksum: 10c0/4e4875e4d7c7c31c233d07a448e7e4650f456178b9dd3766b7cfa13158fdb24ecb8c4f059fa91e820dc6ab9f2d243721d071c9c0378892dcdad86e9e9a27c68f
+  languageName: node
+  linkType: hard
+
+"ramda@npm:^0.30.0":
+  version: 0.30.0
+  resolution: "ramda@npm:0.30.0"
+  checksum: 10c0/31752fc1ff43905ebabe666fc07f3a55e4fb4565f54fa38bc823c336eb399d3d1f90d0f538d3a620974d59aec35973850a9f034922601836aba594b2ed6c1574
   languageName: node
   linkType: hard
 
@@ -885,9 +962,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"yaml@npm:^2.4.1":
+  version: 2.4.2
+  resolution: "yaml@npm:2.4.2"
+  bin:
+    yaml: bin.mjs
+  checksum: 10c0/280ddb2e43ffa7d91a95738e80c8f33e860749cdc25aa6d9e4d350a28e174fd7e494e4aa023108aaee41388e451e3dc1292261d8f022aabcf90df9c63d647549
+  languageName: node
+  linkType: hard
+
 "yn@npm:3.1.1":
   version: 3.1.1
   resolution: "yn@npm:3.1.1"
   checksum: 10c0/0732468dd7622ed8a274f640f191f3eaf1f39d5349a1b72836df484998d7d9807fbea094e2f5486d6b0cd2414aad5775972df0e68f8604db89a239f0f4bf7443
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.23.8":
+  version: 3.23.8
+  resolution: "zod@npm:3.23.8"
+  checksum: 10c0/8f14c87d6b1b53c944c25ce7a28616896319d95bc46a9660fe441adc0ed0a81253b02b5abdaeffedbeb23bdd25a0bf1c29d2c12dd919aef6447652dd295e3e69
   languageName: node
   linkType: hard
