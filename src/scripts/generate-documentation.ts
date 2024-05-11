@@ -3,7 +3,7 @@ import {config} from "../config";
 import {routing} from "../routes";
 import { writeFile } from "node:fs/promises";
 
-export const generateDocumentation = async () => {
+const generateDocumentation = async () => {
     return writeFile(
         "documentation/endpoints.yaml",
         new Documentation({
@@ -17,3 +17,6 @@ export const generateDocumentation = async () => {
     )
 }
 
+void generateDocumentation().then(r => {
+    console.log("Generated documentation successfully.")
+});
