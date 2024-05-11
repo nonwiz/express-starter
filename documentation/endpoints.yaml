@@ -6,6 +6,8 @@ paths:
   /v1/hello:
     get:
       operationId: GetV1Hello
+      summary: Hello - API
+      description: Testing.
       parameters:
         - name: name
           in: query

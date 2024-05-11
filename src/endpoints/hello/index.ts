@@ -3,6 +3,8 @@ import {defaultEndpointsFactory} from "express-zod-api";
 
 
 export const helloEndpoints = defaultEndpointsFactory.build({
+    shortDescription: "Hello - API",
+    description: "Testing.",
     method: "get", // or methods: ["get", "post", ...]
     input: z.object({
         // for empty input use z.object({})
