@@ -97,7 +97,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express@npm:^4.17.21":
+"@types/express@npm:*, @types/express@npm:^4.17.21":
   version: 4.17.21
   resolution: "@types/express@npm:4.17.21"
   dependencies:
@@ -164,6 +164,25 @@ __metadata:
     "@types/node": "npm:*"
     "@types/send": "npm:*"
   checksum: 10c0/26ec864d3a626ea627f8b09c122b623499d2221bbf2f470127f4c9ebfe92bd8a6bb5157001372d4c4bd0dd37a1691620217d9dc4df5aa8f779f3fd996b1c60ae
+  languageName: node
+  linkType: hard
+
+"@types/swagger-ui-express@npm:^4.1.6":
+  version: 4.1.6
+  resolution: "@types/swagger-ui-express@npm:4.1.6"
+  dependencies:
+    "@types/express": "npm:*"
+    "@types/serve-static": "npm:*"
+  checksum: 10c0/b7d10d04e70a4e35b0b98bed9ecebb51c0c9bddcb56f7132022b6022c58d643b05a7fe97e792cd6dc8d2c5d952ef173922db56137642a74b464d704fc3c8962b
+  languageName: node
+  linkType: hard
+
+"@types/yaml@npm:^1.9.7":
+  version: 1.9.7
+  resolution: "@types/yaml@npm:1.9.7"
+  dependencies:
+    yaml: "npm:*"
+  checksum: 10c0/0bbb3015ecf4e483a5431b35a8029374cd944eac67f74973814e287d7075adaa86b30aa40efc53666b4b0a462bdd0b8846a86792039ac600560f29f35821a83b
   languageName: node
   linkType: hard
 
@@ -383,11 +402,15 @@ __metadata:
     "@types/express": "npm:^4.17.21"
     "@types/http-errors": "npm:^2.0.4"
     "@types/node": "npm:^20.12.11"
+    "@types/swagger-ui-express": "npm:^4.1.6"
+    "@types/yaml": "npm:^1.9.7"
     express: "npm:^4.19.2"
     express-zod-api: "npm:^18.5.2"
     http-errors: "npm:^2.0.0"
+    swagger-ui-express: "npm:^5.0.0"
     ts-node: "npm:^10.9.2"
     typescript: "npm:^5.4.5"
+    yaml: "npm:^2.4.2"
     zod: "npm:^3.23.8"
   languageName: unknown
   linkType: soft
@@ -852,6 +875,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"swagger-ui-dist@npm:>=5.0.0":
+  version: 5.17.7
+  resolution: "swagger-ui-dist@npm:5.17.7"
+  checksum: 10c0/8c9f64d2554b917e35c56d33014c5e74fff6179aa6c70012b970d46f6e97a8cedeb3a42fec75687de3fb2a9ae698393f8df4827ab27a1857d9100304984b6380
+  languageName: node
+  linkType: hard
+
+"swagger-ui-express@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "swagger-ui-express@npm:5.0.0"
+  dependencies:
+    swagger-ui-dist: "npm:>=5.0.0"
+  peerDependencies:
+    express: ">=4.0.0 || >=5.0.0-beta"
+  checksum: 10c0/9f4c1f249cc613d687a80a1d5c60e8acf69145aa7dd573138b19902a7556396b9b2e7262eab69764d7d0ef14ae6f50214e701bd01a18fcf3b7776589d78b1c0b
+  languageName: node
+  linkType: hard
+
 "toidentifier@npm:1.0.1":
   version: 1.0.1
   resolution: "toidentifier@npm:1.0.1"
@@ -962,7 +1003,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:^2.4.1":
+"yaml@npm:*, yaml@npm:^2.4.1, yaml@npm:^2.4.2":
   version: 2.4.2
   resolution: "yaml@npm:2.4.2"
   bin:

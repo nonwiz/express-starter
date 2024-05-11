@@ -1,4 +1,13 @@
-import { createConfig } from "express-zod-api";
+import {createConfig} from "express-zod-api";
+import yaml from "yaml";
+import { readFileSync } from "node:fs";
+import ui from "swagger-ui-express";
+import {generateDocumentation} from "../generate-documentation";
+
+const documentation = yaml.parse(
+    readFileSync("documentation/endpoints.yaml", "utf-8"),
+);
+
 const bunny = `         
                 /|      __
                / |   ,-~ /
@@ -27,8 +36,13 @@ export const config = createConfig({
         beforeRouting: ({ app, logger }) => {
             console.clear();
             console.log(bunny)
-            logger.info("Serving the API documentation at https://example.com/docs");
-            // app.use("/docs", ui.serve, ui.setup(documentation));
+            logger.info("Serving the API documentation at http://localhost:8090/docs");
+            void generateDocumentation().then(r => {
+                logger.info("Generated documentation.")
+            }).catch(e => {
+                logger.error("Error generating documentation.");
+            });
+            app.use("/docs", ui.serve, ui.setup(documentation));
         },
     },
     cors: true,
