@@ -109,6 +109,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/helmet@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@types/helmet@npm:4.0.0"
+  dependencies:
+    helmet: "npm:*"
+  checksum: 10c0/19a54586ee7cae72e4f07d36526be3c99010104372501a7a48fa60f3070253b11e9df24393d9fb16123e048043f95880be79f1c1e967d5704b4b961f72898948
+  languageName: node
+  linkType: hard
+
 "@types/http-errors@npm:*, @types/http-errors@npm:^2.0.4":
   version: 2.0.4
   resolution: "@types/http-errors@npm:2.0.4"
@@ -400,12 +409,14 @@ __metadata:
   resolution: "express-plate@workspace:."
   dependencies:
     "@types/express": "npm:^4.17.21"
+    "@types/helmet": "npm:^4.0.0"
     "@types/http-errors": "npm:^2.0.4"
     "@types/node": "npm:^20.12.11"
     "@types/swagger-ui-express": "npm:^4.1.6"
     "@types/yaml": "npm:^1.9.7"
     express: "npm:^4.19.2"
     express-zod-api: "npm:^18.5.2"
+    helmet: "npm:^7.1.0"
     http-errors: "npm:^2.0.0"
     swagger-ui-express: "npm:^5.0.0"
     ts-node: "npm:^10.9.2"
@@ -591,6 +602,13 @@ __metadata:
   dependencies:
     function-bind: "npm:^1.1.2"
   checksum: 10c0/3769d434703b8ac66b209a4cca0737519925bbdb61dd887f93a16372b14694c63ff4e797686d87c90f08168e81082248b9b028bad60d4da9e0d1148766f56eb9
+  languageName: node
+  linkType: hard
+
+"helmet@npm:*, helmet@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "helmet@npm:7.1.0"
+  checksum: 10c0/8c3370d07487be11ac918577c68952e05d779a1a2c037023c1ba763034c381a025899bc52f8acfab5209304a1dc618a3764dbfd26386a0d1173befe4fb932e84
   languageName: node
   linkType: hard
 

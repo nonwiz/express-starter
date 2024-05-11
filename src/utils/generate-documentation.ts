@@ -1,6 +1,6 @@
 import { Documentation } from "express-zod-api";
-import {config} from "./config";
-import {routing} from "./routes";
+import {config} from "../config";
+import {routing} from "../routes";
 import { writeFile } from "node:fs/promises";
 
 export const generateDocumentation = async () => {
