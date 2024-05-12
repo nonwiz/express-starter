@@ -10,3 +10,11 @@ if (!secretKey) {
 export const createToken = (user: User) => {
     return jwt.sign(user, secretKey, { expiresIn: "1h" });
 }
+
+export const verifyToken = (token: string) => {
+    return jwt.verify(token, secretKey);
+}
+
+export const decodeToken = (token: string) => {
+    return jwt.decode(token);
+}
