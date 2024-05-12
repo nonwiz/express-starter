@@ -2,7 +2,6 @@ export const users = [
     {
         "name": "Olivia Brown",
         "email": "oliviabrown@example.com",
-        "phone": "0213123"
     },
     {
         "name": "Ethan Lee",

@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 import ui from "swagger-ui-express";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
+import 'dotenv/config';
 
 const bunny = `         
                 /|      __
@@ -31,11 +32,13 @@ const documentation = yaml.parse(
     readFileSync("documentation/endpoints.yaml", "utf-8"),
 );
 
+
 export const config = createConfig({
     server: {
-        listen: 8090, // port, UNIX socket or options
+        listen: process.env.PORT ?? 8090, // port, UNIX socket or options
         beforeRouting: ({ app, logger }) => {
             console.log('\x1Bc', bunny);
+            console.log("PROT", process.env.PORT)
 
             app.use(helmet());
             app.use(cookieParser())

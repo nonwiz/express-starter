@@ -1,7 +1,7 @@
 import {Routing, ServeStatic} from "express-zod-api";
-import {helloEndpoints} from "../endpoints/hello";
+import {helloEndpoints} from "@/endpoints/hello";
 import { join } from "node:path";
-import {loginEndpoint} from "../endpoints/auth/login";
+import {loginEndpoint} from "@/endpoints/auth/login";
 
 export const routing: Routing = {
     v1: {
