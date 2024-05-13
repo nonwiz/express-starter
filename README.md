@@ -2,6 +2,8 @@
 
 My personal boiler plate for zod-express-api with jwt, auth, docs generation.
 
+To learn more about express-zod-api: https://www.npmjs.com/package/express-zod-api
+
 ## Getting started
 
 Installing the dependencies
@@ -19,3 +21,7 @@ To generate API - Specs
 yarn generate:docs
 ```
 
+To generate Client TS
+```bash
+yarn generate:client
+```

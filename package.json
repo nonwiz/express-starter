@@ -4,7 +4,8 @@
     "build": "tsc",
     "serve": "node dist/index.js",
     "dev": "tsx watch ./src/index.ts",
-    "generate:docs": "tsx src/scripts/generate-documentation.ts"
+    "generate:docs": "tsx src/scripts/generate-documentation.ts",
+    "generate:client": "tsx src/scripts/generate-client.ts"
   },
   "name": "express-plate",
   "packageManager": "yarn@4.2.2",
