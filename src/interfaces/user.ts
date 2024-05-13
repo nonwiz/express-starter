@@ -1,5 +1,6 @@
 export interface User {
     name: string,
     email: string,
-    phone?: string
+    phone?: string,
+    role?: "user" | "manager" | "admin"
 }

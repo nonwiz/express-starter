@@ -1,31 +1,38 @@
 import { z } from "zod";
-import createHttpError, {HttpError} from "http-errors";
+import createHttpError from "http-errors";
 import { createMiddleware } from "express-zod-api";
-import {users} from "../db/user";
 import {decodeToken, verifyToken} from "@/utils/auth";
 import {User} from "@/interfaces/user";
 
-export const authMiddleware = createMiddleware({
+
+const createAuthMiddleware = (role?: 'manager' | 'admin') => createMiddleware({
     security: {
         and: [
-            { type: "header", name: "token" },
+            { type: 'header', name: 'token' },
         ],
     },
-    input: z.object({
-    }),
-    middleware: async ({ input, request, logger }) => {
+    input: z.object({}),
+    middleware: async ({ request, logger }) => {
         const { token } = request.headers;
-        logger.debug("Checking token validity.");
+        logger.debug('Checking token validity.');
+
         if (!verifyToken(token as string)) {
-            throw createHttpError(403, "Not valid token.")
+            throw createHttpError(403, 'Invalid token.');
         }
+
         const user = decodeToken(token as string) as User;
         if (!user) {
-            throw createHttpError(401, "Cannot decode this token.");
+            throw createHttpError(401, 'Cannot decode this token.');
         }
-        // if (request.headers.token !== user.token) {
-        //     throw createHttpError(401, "Invalid token");
-        // }
+
+        if (role && user.role !== role) {
+            throw createHttpError(403, `Access denied. Required role: ${role}`);
+        }
+
         return { user };
     },
 });
+
+export const authMiddleware = createAuthMiddleware();
+export const managerAuthMiddleware = createAuthMiddleware('manager');
+export const adminAuthMiddleware = createAuthMiddleware('admin');
