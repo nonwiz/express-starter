@@ -38,12 +38,9 @@ export const config = createConfig({
         listen: process.env.PORT ?? 8090, // port, UNIX socket or options
         beforeRouting: ({ app, logger }) => {
             console.log('\x1Bc', bunny);
-            console.log("PROT", process.env.PORT)
-
             app.use(helmet());
             app.use(cookieParser())
             app.use("/docs", ui.serve, ui.setup(documentation));
-
             app.get("/", (_, res) => res.json({message: "Welcome", status: 200}));
         },
     },

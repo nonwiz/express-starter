@@ -45,7 +45,21 @@ type GetV1AuthHelloResponse = {
     };
 };
 
-export type Path = "/v1/hello" | "/v1/auth/login" | "/v1/auth/hello";
+type PostV1AuthRefreshTokenInput = {} & {};
+
+type PostV1AuthRefreshTokenResponse = {
+    status: "success";
+    data: {
+        token: string;
+    };
+} | {
+    status: "error";
+    error: {
+        message: string;
+    };
+};
+
+export type Path = "/v1/hello" | "/v1/auth/login" | "/v1/auth/hello" | "/v1/auth/refresh-token";
 
 export type Method = "get" | "post" | "put" | "delete" | "patch";
 
@@ -55,17 +69,19 @@ export interface Input extends Record<MethodPath, any> {
     "get /v1/hello": GetV1HelloInput;
     "post /v1/auth/login": PostV1AuthLoginInput;
     "get /v1/auth/hello": GetV1AuthHelloInput;
+    "post /v1/auth/refresh-token": PostV1AuthRefreshTokenInput;
 }
 
 export interface Response extends Record<MethodPath, any> {
     "get /v1/hello": GetV1HelloResponse;
     "post /v1/auth/login": PostV1AuthLoginResponse;
     "get /v1/auth/hello": GetV1AuthHelloResponse;
+    "post /v1/auth/refresh-token": PostV1AuthRefreshTokenResponse;
 }
 
-export const jsonEndpoints = { "get /v1/hello": true, "post /v1/auth/login": true, "get /v1/auth/hello": true };
+export const jsonEndpoints = { "get /v1/hello": true, "post /v1/auth/login": true, "get /v1/auth/hello": true, "post /v1/auth/refresh-token": true };
 
-export const endpointTags = { "get /v1/hello": [], "post /v1/auth/login": [], "get /v1/auth/hello": [] };
+export const endpointTags = { "get /v1/hello": [], "post /v1/auth/login": [], "get /v1/auth/hello": [], "post /v1/auth/refresh-token": [] };
 
 export type Provider = <M extends Method, P extends Path>(method: M, path: P, params: Input[`${M} ${P}`]) => Promise<Response[`${M} ${P}`]>;
 

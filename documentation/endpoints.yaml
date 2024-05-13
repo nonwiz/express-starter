@@ -181,6 +181,66 @@ paths:
                     status: error
                     error:
                       message: Sample error message
+  /v1/auth/refresh-token:
+    post:
+      operationId: PostV1AuthRefreshToken
+      summary: Refresh the access token
+      description: If already authenticated, this endpoint will send a new access token.
+      requestBody:
+        description: POST /v1/auth/refresh-token Request body
+        content:
+          application/json:
+            schema:
+              type: object
+      security:
+        - APIKEY_1: []
+      responses:
+        "200":
+          description: POST /v1/auth/refresh-token Positive response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    const: success
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                    required:
+                      - token
+                required:
+                  - status
+                  - data
+        "400":
+          description: POST /v1/auth/refresh-token Negative response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    const: error
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                    required:
+                      - message
+                required:
+                  - status
+                  - error
+              examples:
+                example1:
+                  value:
+                    status: error
+                    error:
+                      message: Sample error message
 components:
   schemas: {}
   responses: {}
