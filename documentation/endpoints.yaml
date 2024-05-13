@@ -129,6 +129,58 @@ paths:
                     status: error
                     error:
                       message: Sample error message
+  /v1/auth/hello:
+    get:
+      operationId: GetV1AuthHello
+      security:
+        - APIKEY_1: []
+      responses:
+        "200":
+          description: GET /v1/auth/hello Positive response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    const: success
+                  data:
+                    type: object
+                    properties:
+                      greetings:
+                        type: string
+                    required:
+                      - greetings
+                required:
+                  - status
+                  - data
+        "400":
+          description: GET /v1/auth/hello Negative response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    const: error
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                    required:
+                      - message
+                required:
+                  - status
+                  - error
+              examples:
+                example1:
+                  value:
+                    status: error
+                    error:
+                      message: Sample error message
 components:
   schemas: {}
   responses: {}
@@ -136,7 +188,11 @@ components:
   examples: {}
   requestBodies: {}
   headers: {}
-  securitySchemes: {}
+  securitySchemes:
+    APIKEY_1:
+      type: apiKey
+      in: header
+      name: token
   links: {}
   callbacks: {}
 tags: []
