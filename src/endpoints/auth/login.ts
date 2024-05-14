@@ -7,7 +7,7 @@ import {createToken} from "@/utils/auth";
 
 export const loginEndpoint = defaultEndpointsFactory.build({
     shortDescription: "Login",
-    description: "Login with user name or password",
+    description: "Login with email and password, you will get the token.",
     method: "post", // or methods: ["get", "post", ...]
     input: z.object({
         email: z.string({message: "Email is required."}).email("Should be a valid email address"),

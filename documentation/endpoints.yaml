@@ -66,7 +66,7 @@ paths:
     post:
       operationId: PostV1AuthLogin
       summary: Login
-      description: Login with user name or password
+      description: Login with email and password, you will get the token.
       requestBody:
         description: POST /v1/auth/login Request body
         content:
@@ -252,7 +252,7 @@ components:
     APIKEY_1:
       type: apiKey
       in: header
-      name: token
+      name: authorization
   links: {}
   callbacks: {}
 tags: []
