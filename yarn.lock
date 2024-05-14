@@ -15,6 +15,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@azure/msal-common@npm:14.10.0":
+  version: 14.10.0
+  resolution: "@azure/msal-common@npm:14.10.0"
+  checksum: 10c0/532aa92665f7ec91e57e96606bf2342ac751bc1f3054a094b26e376669732e8f7c957a5c65d62e381daa3cb097e2990d7cf077080e2d50159884f5ad573157d4
+  languageName: node
+  linkType: hard
+
+"@azure/msal-node@npm:^2.8.1":
+  version: 2.8.1
+  resolution: "@azure/msal-node@npm:2.8.1"
+  dependencies:
+    "@azure/msal-common": "npm:14.10.0"
+    jsonwebtoken: "npm:^9.0.0"
+    uuid: "npm:^8.3.0"
+  checksum: 10c0/69332453c0d08f69c885542384244784197c252a22b715aa77a6d26913b892fb3fbdd1dbd493450e49605aca1d8990f1f4a84a21ab72f7e89972902ab8a99ade
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:^7.0.0, @babel/code-frame@npm:^7.12.13, @babel/code-frame@npm:^7.23.5, @babel/code-frame@npm:^7.24.2":
   version: 7.24.2
   resolution: "@babel/code-frame@npm:7.24.2"
@@ -2266,6 +2284,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "express-plate@workspace:."
   dependencies:
+    "@azure/msal-node": "npm:^2.8.1"
     "@types/cookie-parser": "npm:^1.4.7"
     "@types/express": "npm:^4.17.21"
     "@types/helmet": "npm:^4.0.0"
@@ -3466,7 +3485,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonwebtoken@npm:^9.0.2":
+"jsonwebtoken@npm:^9.0.0, jsonwebtoken@npm:^9.0.2":
   version: 9.0.2
   resolution: "jsonwebtoken@npm:9.0.2"
   dependencies:
@@ -4920,6 +4939,15 @@ __metadata:
   version: 1.0.1
   resolution: "utils-merge@npm:1.0.1"
   checksum: 10c0/02ba649de1b7ca8854bfe20a82f1dfbdda3fb57a22ab4a8972a63a34553cf7aa51bc9081cf7e001b035b88186d23689d69e71b510e610a09a4c66f68aa95b672
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^8.3.0":
+  version: 8.3.2
+  resolution: "uuid@npm:8.3.2"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 10c0/bcbb807a917d374a49f475fae2e87fdca7da5e5530820ef53f65ba1d12131bd81a92ecf259cc7ce317cbe0f289e7d79fdfebcef9bfa3087c8c8a2fa304c9be54
   languageName: node
   linkType: hard
 

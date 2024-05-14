@@ -1,7 +1,7 @@
 import {Routing, ServeStatic} from "express-zod-api";
 import {helloEndpoints, helloWithAuthEndpoints} from "@/endpoints/hello";
 import { join } from "node:path";
-import {loginEndpoint} from "@/endpoints/auth/login";
+import {loginEndpoint, microsoftAuthCallbackEndpoint} from "@/endpoints/auth/login";
 import {refreshEndpoint} from "@/endpoints/auth/refresh-token";
 
 export const routing: Routing = {
@@ -11,6 +11,9 @@ export const routing: Routing = {
             login: loginEndpoint,
             hello: helloWithAuthEndpoints,
             "refresh-token": refreshEndpoint,
+            microsoft: {
+                callback: microsoftAuthCallbackEndpoint
+            }
         }
     },
     public: new ServeStatic(join("documentation", "assets"), {

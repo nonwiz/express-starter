@@ -4,7 +4,11 @@ import { readFileSync } from "node:fs";
 import ui from "swagger-ui-express";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
-import 'dotenv/config';
+import {
+    authCodeUrlParameters,
+    cca,
+} from "@/utils/auth";
+import {env} from "@/config/env";
 
 const bunny = `         
                 /|      __
@@ -35,13 +39,14 @@ const documentation = yaml.parse(
 
 export const config = createConfig({
     server: {
-        listen: process.env.PORT ?? 8090, // port, UNIX socket or options
+        listen: env.PORT, // port, UNIX socket or options
         beforeRouting: ({ app, logger }) => {
             console.log('\x1Bc', bunny);
             app.use(helmet());
             app.use(cookieParser())
-            app.use("/docs", ui.serve, ui.setup(documentation));
             app.get("/", (_, res) => res.json({message: "Welcome", status: 200}));
+            app.use("/docs", ui.serve, ui.setup(documentation));
+            app.get('/auth/microsoft', async (req, res) => res.redirect(await cca.getAuthCodeUrl(authCodeUrlParameters)));
         },
     },
     cors: true,
