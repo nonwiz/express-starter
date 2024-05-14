@@ -8,12 +8,13 @@ import {User} from "@/interfaces/user";
 const createAuthMiddleware = (role?: 'manager' | 'admin') => createMiddleware({
     security: {
         and: [
-            { type: 'header', name: 'token' },
+            { type: 'header', name: 'authorization' },
         ],
     },
     input: z.object({}),
     middleware: async ({ request, logger }) => {
-        const { token } = request.headers;
+        const { authorization: authorizationHeader = ""} = request.headers;
+        const token = authorizationHeader.split(' ')[1];
         logger.debug('Checking token validity.');
 
         if (!verifyToken(token as string)) {
@@ -34,5 +35,3 @@ const createAuthMiddleware = (role?: 'manager' | 'admin') => createMiddleware({
 });
 
 export const authMiddleware = createAuthMiddleware();
-export const managerAuthMiddleware = createAuthMiddleware('manager');
-export const adminAuthMiddleware = createAuthMiddleware('admin');

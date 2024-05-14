@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/express-plate.iml" filepath="$PROJECT_DIR$/.idea/express-plate.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../express-starter-fe/.idea/express-starter-fe.iml" filepath="$PROJECT_DIR$/../express-starter-fe/.idea/express-starter-fe.iml" />
     </modules>
   </component>
 </project>
