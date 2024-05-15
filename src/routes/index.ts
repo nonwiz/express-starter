@@ -1,8 +1,10 @@
 import {Routing, ServeStatic} from "express-zod-api";
 import {helloEndpoints, helloWithAuthEndpoints} from "@/endpoints/hello";
 import { join } from "node:path";
-import {loginEndpoint, microsoftAuthCallbackEndpoint} from "@/endpoints/auth/login";
+import {loginEndpoint} from "@/endpoints/auth/login";
 import {refreshEndpoint} from "@/endpoints/auth/refresh-token";
+import {microsoftAuthCallbackEndpoint} from "@/endpoints/auth/microsoft/callback";
+import {getLoginURLWithMicrosoftEndpoint, loginWithMicrosoftEndpoint} from "@/endpoints/auth/microsoft/login";
 
 export const routing: Routing = {
     v1: {
@@ -12,7 +14,9 @@ export const routing: Routing = {
             hello: helloWithAuthEndpoints,
             "refresh-token": refreshEndpoint,
             microsoft: {
-                callback: microsoftAuthCallbackEndpoint
+                login: loginWithMicrosoftEndpoint,
+                "login-url": getLoginURLWithMicrosoftEndpoint,
+                callback: microsoftAuthCallbackEndpoint,
             }
         }
     },

@@ -4,10 +4,6 @@ import { readFileSync } from "node:fs";
 import ui from "swagger-ui-express";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
-import {
-    authCodeUrlParameters,
-    cca,
-} from "@/utils/auth";
 import {env} from "@/config/env";
 
 const bunny = `         
@@ -44,7 +40,6 @@ export const config = createConfig({
             app.use(cookieParser())
             app.get("/", (_, res) => res.json({status: 200}));
             app.use("/docs", ui.serve, ui.setup(documentation));
-            app.get('/auth/microsoft', async (req, res) => res.redirect(await cca.getAuthCodeUrl(authCodeUrlParameters)));
         },
     },
     cors: true,

@@ -241,6 +241,108 @@ paths:
                     status: error
                     error:
                       message: Sample error message
+  /v1/auth/microsoft/login:
+    get:
+      operationId: GetV1AuthMicrosoftLogin
+      summary: Login with microsoft auth
+      description: When user hits this endpoint, it would redirect user to sign in the url.
+      responses:
+        "200":
+          description: GET /v1/auth/microsoft/login Positive response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    const: success
+                  data:
+                    type: object
+                required:
+                  - status
+                  - data
+        "400":
+          description: GET /v1/auth/microsoft/login Negative response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    const: error
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                    required:
+                      - message
+                required:
+                  - status
+                  - error
+              examples:
+                example1:
+                  value:
+                    status: error
+                    error:
+                      message: Sample error message
+  /v1/auth/microsoft/login-url:
+    get:
+      operationId: GetV1AuthMicrosoftLoginUrl
+      summary: Get microsoft login url
+      description: Return microosft login url
+      responses:
+        "200":
+          description: GET /v1/auth/microsoft/login-url Positive response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    const: success
+                  data:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                      callbackUrl:
+                        type: string
+                    required:
+                      - url
+                      - callbackUrl
+                required:
+                  - status
+                  - data
+        "400":
+          description: GET /v1/auth/microsoft/login-url Negative response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    const: error
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                    required:
+                      - message
+                required:
+                  - status
+                  - error
+              examples:
+                example1:
+                  value:
+                    status: error
+                    error:
+                      message: Sample error message
   /v1/auth/microsoft/callback:
     get:
       operationId: GetV1AuthMicrosoftCallback
