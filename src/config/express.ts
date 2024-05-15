@@ -33,16 +33,16 @@ const bunny = `
         `;
 
 const documentation = yaml.parse(
-    readFileSync("documentation/endpoints.yaml", "utf-8"),
+    readFileSync(env.DOC_PATH, "utf-8"),
 );
 export const config = createConfig({
     server: {
         listen: env.PORT, // port, UNIX socket or options
-        beforeRouting: ({ app, logger }) => {
+        beforeRouting: ({ app}) => {
             console.log('\x1Bc', bunny);
             app.use(helmet());
             app.use(cookieParser())
-            app.get("/", (_, res) => res.json({message: "Welcome", status: 200}));
+            app.get("/", (_, res) => res.json({status: 200}));
             app.use("/docs", ui.serve, ui.setup(documentation));
             app.get('/auth/microsoft', async (req, res) => res.redirect(await cca.getAuthCodeUrl(authCodeUrlParameters)));
         },

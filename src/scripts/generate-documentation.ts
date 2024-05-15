@@ -1,22 +1,23 @@
-import { Documentation } from "express-zod-api";
-import {config} from "../config";
-import {routing} from "../routes";
-import { writeFile } from "node:fs/promises";
+import {Documentation} from "express-zod-api";
+import {config, env} from "@/config";
+import {routing} from "@/routes";
+import {writeFile} from "node:fs/promises";
+import {formatDateToYYMM} from "@/utils/formatter";
 
 const generateDocumentation = async () => {
     return writeFile(
-        "documentation/endpoints.yaml",
+        env.DOC_PATH,
         new Documentation({
             routing,
             config,
-            version: "0",
-            title: "Example API",
-            serverUrl: "https://example.com",
+            version: formatDateToYYMM(new Date()),
+            title: `${env.APP_NAME} API`,
+            serverUrl: `${env.BASE_URL}/api/`,
         }).getSpecAsYaml(),
         "utf-8",
     )
 }
 
-void generateDocumentation().then(r => {
+void generateDocumentation().then(_ => {
     console.log("Generated documentation successfully.")
 });
