@@ -1,5 +1,5 @@
 import {Routing, ServeStatic} from "express-zod-api";
-import {helloEndpoints, helloWithAuthEndpoints} from "@/endpoints/hello";
+import {helloWithAuthEndpoints} from "@/endpoints/hello";
 import { join } from "node:path";
 import {loginEndpoint} from "@/endpoints/auth/login";
 import {refreshEndpoint} from "@/endpoints/auth/refresh-token";
@@ -8,7 +8,6 @@ import {getLoginURLWithMicrosoftEndpoint, loginWithMicrosoftEndpoint} from "@/en
 
 export const routing: Routing = {
     v1: {
-        hello: helloEndpoints,
         auth: {
             login: loginEndpoint,
             hello: helloWithAuthEndpoints,

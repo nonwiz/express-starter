@@ -3,65 +3,6 @@ info:
   title: Express Starter API
   version: 24-05
 paths:
-  /v1/hello:
-    get:
-      operationId: GetV1Hello
-      summary: Hello - API
-      description: Testing.
-      parameters:
-        - name: name
-          in: query
-          required: false
-          description: GET /v1/hello Parameter
-          schema:
-            type: string
-      responses:
-        "200":
-          description: GET /v1/hello Positive response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    const: success
-                  data:
-                    type: object
-                    properties:
-                      greetings:
-                        type: string
-                    required:
-                      - greetings
-                required:
-                  - status
-                  - data
-        "400":
-          description: GET /v1/hello Negative response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    const: error
-                  error:
-                    type: object
-                    properties:
-                      message:
-                        type: string
-                    required:
-                      - message
-                required:
-                  - status
-                  - error
-              examples:
-                example1:
-                  value:
-                    status: error
-                    error:
-                      message: Sample error message
   /v1/auth/login:
     post:
       operationId: PostV1AuthLogin
@@ -132,6 +73,9 @@ paths:
   /v1/auth/hello:
     get:
       operationId: GetV1AuthHello
+      summary: Protected route - example
+      description: You can't access this endpoint without valid Bearer token in Header
+        - authorization.
       security:
         - APIKEY_1: []
       responses:
@@ -292,7 +236,7 @@ paths:
     get:
       operationId: GetV1AuthMicrosoftLoginUrl
       summary: Get microsoft login url
-      description: Return microosft login url
+      description: Return microsoft login url
       responses:
         "200":
           description: GET /v1/auth/microsoft/login-url Positive response
