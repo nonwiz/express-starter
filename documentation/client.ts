@@ -59,7 +59,23 @@ type PostV1AuthRefreshTokenResponse = {
     };
 };
 
-export type Path = "/v1/hello" | "/v1/auth/login" | "/v1/auth/hello" | "/v1/auth/refresh-token";
+type GetV1AuthMicrosoftCallbackInput = {
+    code: string;
+};
+
+type GetV1AuthMicrosoftCallbackResponse = {
+    status: "success";
+    data: {
+        token: string;
+    };
+} | {
+    status: "error";
+    error: {
+        message: string;
+    };
+};
+
+export type Path = "/v1/hello" | "/v1/auth/login" | "/v1/auth/hello" | "/v1/auth/refresh-token" | "/v1/auth/microsoft/callback";
 
 export type Method = "get" | "post" | "put" | "delete" | "patch";
 
@@ -70,6 +86,7 @@ export interface Input extends Record<MethodPath, any> {
     "post /v1/auth/login": PostV1AuthLoginInput;
     "get /v1/auth/hello": GetV1AuthHelloInput;
     "post /v1/auth/refresh-token": PostV1AuthRefreshTokenInput;
+    "get /v1/auth/microsoft/callback": GetV1AuthMicrosoftCallbackInput;
 }
 
 export interface Response extends Record<MethodPath, any> {
@@ -77,11 +94,12 @@ export interface Response extends Record<MethodPath, any> {
     "post /v1/auth/login": PostV1AuthLoginResponse;
     "get /v1/auth/hello": GetV1AuthHelloResponse;
     "post /v1/auth/refresh-token": PostV1AuthRefreshTokenResponse;
+    "get /v1/auth/microsoft/callback": GetV1AuthMicrosoftCallbackResponse;
 }
 
-export const jsonEndpoints = { "get /v1/hello": true, "post /v1/auth/login": true, "get /v1/auth/hello": true, "post /v1/auth/refresh-token": true };
+export const jsonEndpoints = { "get /v1/hello": true, "post /v1/auth/login": true, "get /v1/auth/hello": true, "post /v1/auth/refresh-token": true, "get /v1/auth/microsoft/callback": true };
 
-export const endpointTags = { "get /v1/hello": [], "post /v1/auth/login": [], "get /v1/auth/hello": [], "post /v1/auth/refresh-token": [] };
+export const endpointTags = { "get /v1/hello": [], "post /v1/auth/login": [], "get /v1/auth/hello": [], "post /v1/auth/refresh-token": [], "get /v1/auth/microsoft/callback": [] };
 
 export type Provider = <M extends Method, P extends Path>(method: M, path: P, params: Input[`${M} ${P}`]) => Promise<Response[`${M} ${P}`]>;
 

@@ -1,16 +1,14 @@
 import jwt from "jsonwebtoken";
 import {User} from "@/interfaces/user";
 import * as msal from "@azure/msal-node";
-import {env} from "@/config/env";
-
-const secretKey = env.JWT_SECRET;
+import {env} from "@/config";
 
 export const createToken = (user: User) => {
-    return jwt.sign(user, secretKey, { expiresIn: env.JWT_EXPIRED });
+    return jwt.sign(user, env.JWT_SECRET, { expiresIn: env.JWT_EXPIRED });
 }
 
 export const verifyToken = (token: string) => {
-    return jwt.verify(token, secretKey);
+    return jwt.verify(token, env.JWT_SECRET);
 }
 
 export const decodeToken = (token: string) => {

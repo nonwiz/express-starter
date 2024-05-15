@@ -3,7 +3,7 @@ import {defaultEndpointsFactory} from "express-zod-api";
 import {users} from "@/db/user";
 import createHttpError from "http-errors";
 import {cca, createToken} from "@/utils/auth";
-import {env} from "@/config/env";
+import {env} from "@/config";
 
 export const loginEndpoint = defaultEndpointsFactory.build({
     shortDescription: "Login",

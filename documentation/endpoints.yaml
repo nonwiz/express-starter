@@ -241,6 +241,65 @@ paths:
                     status: error
                     error:
                       message: Sample error message
+  /v1/auth/microsoft/callback:
+    get:
+      operationId: GetV1AuthMicrosoftCallback
+      summary: Microsoft token callback
+      description: Callback to get user token from Azure Issuer
+      parameters:
+        - name: code
+          in: query
+          required: true
+          description: GET /v1/auth/microsoft/callback Parameter
+          schema:
+            type: string
+      responses:
+        "200":
+          description: GET /v1/auth/microsoft/callback Positive response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    const: success
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                    required:
+                      - token
+                required:
+                  - status
+                  - data
+        "400":
+          description: GET /v1/auth/microsoft/callback Negative response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    const: error
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                    required:
+                      - message
+                required:
+                  - status
+                  - error
+              examples:
+                example1:
+                  value:
+                    status: error
+                    error:
+                      message: Sample error message
 components:
   schemas: {}
   responses: {}
