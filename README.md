@@ -25,3 +25,12 @@ To generate Client TS
 ```bash
 yarn generate:client
 ```
+
+## Microsoft Auth
+```bash
+# Get: /v1/auth/microsoft/login
+This would redirect user to login their microsoft account and redirect to the url below
+
+# Redirect to: /v1/auth/microsoft/callback
+This would return a valid token that contain user information like name and email.
+```
