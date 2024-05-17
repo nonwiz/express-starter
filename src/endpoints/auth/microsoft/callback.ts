@@ -4,17 +4,12 @@ import createHttpError from "http-errors";
 import {cca, createToken} from "@/utils/auth";
 import {env} from "@/config";
 
-export const microsoftAuthCallbackEndpoint = defaultEndpointsFactory.build({
-    shortDescription: "Microsoft token callback",
-    description: "Callback to get user token from Azure Issuer",
-    method: "get",
-    input: z.object({
-        code: z.string()
-    }),
-    output: z.object({
-        token: z.string()
-    }),
-    handler: async ({ input: { code }, logger }) => {
+export const microsoftAuthCallbackWithRedirectEndpoint = defaultEndpointsFactory
+    .use(async (request, response, _next) => {
+        const code = request.query.code;
+        if (!code) {
+            throw createHttpError(403, 'Please try to sign in again via /auth/microsoft');
+        }
         const tokenRequest = {
             scopes: ["profile"],
             code: code,
@@ -28,7 +23,16 @@ export const microsoftAuthCallbackEndpoint = defaultEndpointsFactory.build({
             name: userInfo.account.name ?? "",
             email: userInfo.account.username ?? "",
         }
-        return {token: createToken(user)};
-    }
-})
+        response.redirect(env.MS_REDIRECT_FE_URL + `?token=${createToken(user)}`);
+    })
+    .build({
+        shortDescription: "Callback for microsoft login",
+        description: "After logging successfully, this endpoint will redirect to user with ?token=validToken",
+        method: "get",
+        input: z.object({}),
+        output: z.object({}),
+        handler: async () => {
+            return {}
+        }
+    });
 

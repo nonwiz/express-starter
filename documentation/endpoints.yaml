@@ -70,6 +70,67 @@ paths:
                     status: error
                     error:
                       message: Sample error message
+  /v1/auth/me:
+    get:
+      operationId: GetV1AuthMe
+      summary: Get logged in user profile
+      description: When signed in, this return user profile information.
+      security:
+        - APIKEY_1: []
+      responses:
+        "200":
+          description: GET /v1/auth/me Positive response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    const: success
+                  data:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      email:
+                        type: string
+                      phone:
+                        type: string
+                      role:
+                        type: string
+                        default: user
+                    required:
+                      - email
+                required:
+                  - status
+                  - data
+        "400":
+          description: GET /v1/auth/me Negative response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    const: error
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                    required:
+                      - message
+                required:
+                  - status
+                  - error
+              examples:
+                example1:
+                  value:
+                    status: error
+                    error:
+                      message: Sample error message
   /v1/auth/hello:
     get:
       operationId: GetV1AuthHello
@@ -290,15 +351,9 @@ paths:
   /v1/auth/microsoft/callback:
     get:
       operationId: GetV1AuthMicrosoftCallback
-      summary: Microsoft token callback
-      description: Callback to get user token from Azure Issuer
-      parameters:
-        - name: code
-          in: query
-          required: true
-          description: GET /v1/auth/microsoft/callback Parameter
-          schema:
-            type: string
+      summary: Callback for microsoft login
+      description: After logging successfully, this endpoint will redirect to user
+        with ?token=validToken
       responses:
         "200":
           description: GET /v1/auth/microsoft/callback Positive response
@@ -312,11 +367,6 @@ paths:
                     const: success
                   data:
                     type: object
-                    properties:
-                      token:
-                        type: string
-                    required:
-                      - token
                 required:
                   - status
                   - data
