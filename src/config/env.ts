@@ -11,7 +11,7 @@ const environmentSchema = z.object({
     MS_CLIENT_ID: z.string({message: "CLIENT_ID should not be empty."}),
     MS_CLIENT_SECRET: z.string({message: "CLIENT_SECRET should not be empty."}),
     MS_REDIRECT_URI: z.string().optional().default("http://localhost:8090/v1/auth/microsoft/callback"),
-    MS_REDIRECT_FE_URL: z.string().optional().default("http://localhost:3000/login"),
+    MS_REDIRECT_FE_URL: z.string().optional().default("http://localhost:3000/login").describe("When user redirect to ms-auth callback, it would redirect to this given url."),
     DOC_PATH: z.string().optional().default("documentation/endpoints.yaml")
 })
 
