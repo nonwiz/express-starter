@@ -25,12 +25,16 @@ To generate Client TS
 ```bash
 yarn generate:client
 ```
+## Env
+![image](https://github.com/nonwiz/express-starter/assets/93533702/cf46cce7-72a7-4e12-9fde-a9fe12629cdc)
+
 
 ## Microsoft Auth
 ```bash
-# Get: /v1/auth/microsoft/login
-This would redirect user to login their microsoft account and redirect to the url below
+# Get: /v1/auth/microsoft/login-url
+Retrive microsoft_login_url
 
 # Redirect to: /v1/auth/microsoft/callback
-This would return a valid token that contain user information like name and email.
+Redirect back to frontend (can be any url) with token in the query.
 ```
+
