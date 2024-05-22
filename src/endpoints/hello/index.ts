@@ -18,4 +18,21 @@ export const helloWithAuthEndpoints = defaultEndpointsFactory
             logger.debug("Options:", options); // middlewares provide options
             return { greetings: `Hello, ${name || "World"}. Happy coding!` };
         },
+    });
+
+export const helloEndpoints = defaultEndpointsFactory
+    .build({
+        shortDescription: "Protected route - example",
+        description: "You can't access this endpoint without valid Bearer token in Header - authorization.",
+        method: "get", // or methods: ["get", "post", ...]
+        input: z.object({
+            name: z.string()
+        }),
+        output: z.object({
+            greetings: z.string().toUpperCase(),
+        }),
+        handler: async ({ input: { name }, options, logger }) => {
+            logger.debug("Options:", options); // middlewares provide options
+            return { greetings: `Hello, ${name || "World"}. Happy coding!` };
+        },
 });

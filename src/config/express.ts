@@ -5,41 +5,27 @@ import ui from "swagger-ui-express";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import {env} from "@/config/env";
-
-const bunny = `         
-                /|      __
-               / |   ,-~ /
-              Y :|  //  /
-              | jj /( .^
-              >-"~"-v"
-             /       Y
-            jo  o    |
-           ( ~T~     j
-            >._-' _./
-           /   "~"  |
-          Y     _,  |
-         /| ;-"~ _  l
-        / l/ ,-"~    \\
-        \\//\\/      .- \\
-         Y        /    Y    - ExpressJS - Boilerplate #1
-         l       I     !
-         ]\\      _\\    /"\\
-        (" ~----( ~   Y.  )
-        
-        `;
+import {isUrlValid} from "@/utils/routing";
 
 const documentation = yaml.parse(
     readFileSync(env.DOC_PATH, "utf-8"),
 );
 export const config = createConfig({
+    startupLogo: false,
     server: {
         listen: env.PORT, // port, UNIX socket or options
         beforeRouting: ({ app}) => {
-            console.log('\x1Bc', bunny);
             app.use(helmet());
             app.use(cookieParser())
             app.get("/", (_, res) => res.json({status: 200}));
             app.use("/docs", ui.serve, ui.setup(documentation));
+            app.use((req, res, next) => {
+                if (!isUrlValid(req.url)) {
+                    res.status(404).json({status: "error", error: {message: "Page not found."}});
+                    return;
+                }
+                next();
+            });
         },
     },
     cors: true,
