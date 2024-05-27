@@ -21,13 +21,16 @@ export function getAllKeys(obj: Record<string, any>): string[] {
 function compilePathToRegex(paths: string[]): RegExp[] {
     return paths.map(path => {
         const regexString = path.replace(/:[^/]+/g, '[^/]+');
-        return new RegExp(`^${regexString}$`, 'i');
+        // Adjust regex to account for optional query string after the path
+        return new RegExp(`^${regexString}(\\?.*)?$`, 'i');
     });
 }
 
 const compiledRegexesUrls = compilePathToRegex(getAllKeys(routing));
 
 export function isUrlValid(url: string): boolean {
+    // Remove the leading '/' if it exists
     const cleanedUrl = url.startsWith('/') ? url.slice(1) : url;
     return compiledRegexesUrls.some(regex => regex.test(cleanedUrl));
 }
+
