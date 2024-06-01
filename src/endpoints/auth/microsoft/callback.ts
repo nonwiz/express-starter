@@ -12,7 +12,7 @@ export const microsoftAuthCallbackWithRedirectEndpoint = defaultEndpointsFactory
         }
         const tokenRequest = {
             scopes: ["profile"],
-            code: code,
+            code: code as string,
             redirectUri: env.MS_REDIRECT_URI,
         };
         const userInfo = await cca.acquireTokenByCode(tokenRequest);
