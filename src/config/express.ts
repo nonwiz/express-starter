@@ -3,6 +3,7 @@ import yaml from "yaml";
 import { readFileSync } from "node:fs";
 import ui from "swagger-ui-express";
 import helmet from "helmet";
+import cors from "cors";
 import cookieParser from "cookie-parser";
 import {env} from "@/config/env";
 import {isUrlValid} from "@/utils/routing";
@@ -10,11 +11,20 @@ import {isUrlValid} from "@/utils/routing";
 const documentation = yaml.parse(
     readFileSync(env.DOC_PATH, "utf-8"),
 );
+
+const corsOptions = {
+    origin: 'https://next-riot-chi.vercel.app',  // Allow only example.com domain
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',  // Allow all methods
+    allowedHeaders: '*',  // Allow all headers
+    credentials: true  // Optional: enable if your API needs to handle cookies
+};
+
 export const config = createConfig({
     startupLogo: false,
     server: {
         listen: env.PORT, // port, UNIX socket or options
         beforeRouting: ({ app}) => {
+            app.use(cors(corsOptions));
             app.use(helmet());
             app.use(cookieParser())
             app.get("/", (_, res) => res.json({status: 200}));
