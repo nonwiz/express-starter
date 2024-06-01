@@ -22,7 +22,6 @@ app.use(cookieParser());
 app.use(express.json());
 export const { logger } = attachRouting({
     app,
-    compression: true,
     cors: true,
     startupLogo: false,
     logger: { level: "debug", color: true }}, routing);
