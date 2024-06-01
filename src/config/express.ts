@@ -6,6 +6,13 @@ import {attachRouting} from "express-zod-api";
 import {routing} from "@/routes";
 
 export const app = express();
+app.options('*', (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.sendStatus(200);
+});
+
 app.use(cors());
 app.use(helmet());
 app.use(cookieParser());
