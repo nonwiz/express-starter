@@ -13,7 +13,7 @@ const documentation = yaml.parse(
 );
 
 const corsOptions = {
-    origin: 'https://next-riot-chi.vercel.app',  // Allow only example.com domain
+    origin: 'https://next-riot-chi.vercel.app/',  // Allow only example.com domain
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',  // Allow all methods
     allowedHeaders: '*',  // Allow all headers
     credentials: true  // Optional: enable if your API needs to handle cookies
