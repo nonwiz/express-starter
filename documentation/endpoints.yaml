@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: Express Starter API
-  version: 24-06
+  title: Example API
+  version: "1"
 paths:
   /v1/auth/login:
     post:
@@ -472,4 +472,4 @@ components:
   callbacks: {}
 tags: []
 servers:
-  - url: http://localhost:8090/api/
+  - url: https://example.com
