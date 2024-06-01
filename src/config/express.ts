@@ -9,7 +9,7 @@ export const app = express();
 app.use(cors());
 app.use(helmet());
 app.use(cookieParser());
-app.use(express.json);
+app.use(express.json());
 export const { logger } = attachRouting({
     app,
     cors: true,
