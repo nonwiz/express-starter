@@ -1,5 +1,5 @@
-import { createServer } from "express-zod-api";
-import {config} from "./config";
-import {routing} from "./routes";
+import {app, env, logger} from "@/config";
 
-createServer(config, routing);
+app.listen(env.PORT, () => {
+    logger.info("Starting application.")
+})
