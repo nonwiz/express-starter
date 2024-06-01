@@ -11,7 +11,6 @@
     "coverage": "jest -i --coverage"
   },
   "name": "express-plate",
-  "packageManager": "yarn@4.2.2",
   "dependencies": {
     "@azure/msal-node": "^2.8.1",
     "@types/swagger-ui-express": "^4.1.6",
