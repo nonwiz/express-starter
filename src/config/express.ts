@@ -13,6 +13,7 @@ const documentation = yaml.parse(
 export const config = createConfig({
     startupLogo: false,
     server: {
+        upload: true,
         listen: env.PORT, // port, UNIX socket or options
         beforeRouting: ({ app}) => {
             app.options('*', (req, res) => {
