@@ -5,6 +5,7 @@ import cors from "cors";
 import {attachRouting} from "express-zod-api";
 import {routing} from "@/routes";
 import compression from "compression";
+import fileUpload from "express-fileupload";
 
 export const app = express();
 
@@ -20,6 +21,7 @@ app.options('*', (req, res) => {
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
+app.use(fileUpload())
 export const { logger } = attachRouting({
     app,
     cors: true,
